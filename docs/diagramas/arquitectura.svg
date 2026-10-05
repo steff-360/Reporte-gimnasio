@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1000" style="width:100%;height:auto;max-width:100%" viewBox="0 0 1500 1000" preserveAspectRatio="xMidYMin meet" role="img" aria-labelledby="title description">
+  <title id="title">Arquitectura de Gestión de Gimnasio</title>
+  <desc id="description">Diagrama de capas de la aplicación Node.js, componentes del dominio, base MySQL y flujo de transacciones.</desc>
+  <defs>
+    <style>
+      .bg{fill:#f4f7f5}.title{font:700 32px Arial,sans-serif;fill:#142c2a}.sub{font:15px Arial,sans-serif;fill:#536966}
+      .layer{stroke-width:1.8;rx:15}.cli{fill:#dceee7;stroke:#79a994}.svc{fill:#e4eafa;stroke:#8296c4}.repo{fill:#f4e6ce;stroke:#c69b5b}.database{fill:#e0edf0;stroke:#6b9aa0}
+      .domain{fill:#fff;stroke:#95aaa2;stroke-width:1.5;rx:12}.txpanel{fill:#fff;stroke:#d6e0da;stroke-width:1.5;rx:16}
+      .h{font:700 20px Arial,sans-serif;fill:#193b35}.tag{font:700 11px Arial,sans-serif;fill:#42635a}.text{font:14px Arial,sans-serif;fill:#344c48}.small{font:12px Arial,sans-serif;fill:#60736d}.mono{font:12.5px Consolas,monospace;fill:#344c48}
+      .flow{fill:none;stroke:#58776d;stroke-width:3;marker-end:url(#arrow)}.aux{fill:none;stroke:#83958f;stroke-width:2;stroke-dasharray:6 5;marker-end:url(#arrowAux)}
+      .critical{fill:none;stroke:#a24b2a;stroke-width:2.4;marker-end:url(#arrowCritical)}.rollback{fill:none;stroke:#a24b2a;stroke-width:2.2;stroke-dasharray:7 5;marker-end:url(#arrowCritical)}
+      .step{fill:#fff8ee;stroke:#d4a068;stroke-width:1.5;rx:11}.stepNo{font:700 12px Arial,sans-serif;fill:#9b512b}.stepText{font:700 14px Arial,sans-serif;fill:#4e4539}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#58776d"/></marker>
+    <marker id="arrowAux" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#83958f"/></marker>
+    <marker id="arrowCritical" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#a24b2a"/></marker>
+  </defs>
+  <rect class="bg" width="1500" height="1000"/>
+  <text class="title" x="55" y="57">Gestión de Gimnasio</text>
+  <text class="sub" x="55" y="85">Arquitectura por capas · responsabilidades y consistencia de datos</text>
+
+  <text class="tag" x="60" y="133">FLUJO DE LA APLICACIÓN</text>
+  <rect class="layer cli" x="60" y="155" width="280" height="220"/>
+  <text class="h" x="86" y="195">01 · Interfaz CLI</text>
+  <text class="mono" x="86" y="225">src/app.js</text>
+  <text class="text" x="86" y="263">Inquirer · formularios y menús</text>
+  <text class="text" x="86" y="293">Chalk · mensajes de estado</text>
+  <text class="text" x="86" y="323">Login · selección según rol</text>
+  <text class="small" x="86" y="351">Recibe entradas y muestra resultados</text>
+
+  <rect class="layer svc" x="420" y="155" width="300" height="220"/>
+  <text class="h" x="446" y="195">02 · Servicios</text>
+  <text class="mono" x="446" y="225">src/services/</text>
+  <text class="text" x="446" y="263">Auth · Cliente · Plan</text>
+  <text class="text" x="446" y="293">Contrato · Finanzas</text>
+  <text class="text" x="446" y="323">Progreso · Nutrición</text>
+  <text class="small" x="446" y="351">Coordina reglas y casos de uso</text>
+
+  <rect class="layer repo" x="800" y="155" width="300" height="220"/>
+  <text class="h" x="826" y="195">03 · Repositorios</text>
+  <text class="mono" x="826" y="225">src/repositories/</text>
+  <text class="text" x="826" y="263">Consultas SQL parametrizadas</text>
+  <text class="text" x="826" y="293">Repository Pattern</text>
+  <text class="text" x="826" y="323">Transacciones y bloqueos</text>
+  <text class="small" x="826" y="351">Aísla persistencia del negocio</text>
+
+  <rect class="layer database" x="1180" y="185" width="260" height="160"/>
+  <text class="h" x="1207" y="228">04 · Persistencia</text>
+  <text class="mono" x="1207" y="260">MySQL · mysql2/promise</text>
+  <text class="text" x="1207" y="292">Pool configurado con DB_*</text>
+  <text class="small" x="1207" y="320">Esquema relacional y FK</text>
+
+  <path class="flow" d="M340 265H420"/><text class="small" x="350" y="250">solicita</text>
+  <path class="flow" d="M720 265H800"/><text class="small" x="733" y="250">coordina</text>
+  <path class="flow" d="M1100 265H1180"/><text class="small" x="1110" y="250">consulta</text>
+
+  <rect class="domain" x="60" y="430" width="660" height="170"/>
+  <text class="h" x="86" y="470">Dominio y validación</text>
+  <rect x="86" y="490" width="280" height="78" rx="9" fill="#e7f0eb"/>
+  <text class="mono" x="103" y="519">src/domain/</text><text class="text" x="103" y="546">Cliente · Plan · MovimientoFactory</text>
+  <rect x="390" y="490" width="300" height="78" rx="9" fill="#f3eadb"/>
+  <text class="mono" x="407" y="519">src/models/</text><text class="text" x="407" y="546">Progreso · PlanNutricional · Alimento</text>
+  <path class="aux" d="M560 430V375"/><text class="small" x="574" y="416">validación usada por servicios</text>
+
+  <rect class="domain" x="800" y="430" width="640" height="170"/>
+  <text class="h" x="826" y="470">Patrones y principios visibles</text>
+  <text class="text" x="826" y="510">Repository: repositorios aíslan SQL y pool.</text>
+  <text class="text" x="826" y="542">Factory: MovimientoFactory valida y construye movimientos.</text>
+  <text class="text" x="826" y="574">SOLID: SRP por capas e inyección de dependencias básica.</text>
+
+  <rect class="txpanel" x="60" y="650" width="1380" height="285"/>
+  <text class="h" x="88" y="692">Operación crítica · límites transaccionales</text>
+  <text class="small" x="88" y="719">Ejemplos: asignar/renovar contrato, cancelar junto con progresos, registrar progreso, crear plan nutricional y registrar movimiento.</text>
+
+  <rect class="step" x="88" y="760" width="215" height="92"/><text class="stepNo" x="108" y="785">01</text><text class="stepText" x="108" y="817">beginTransaction()</text><text class="small" x="108" y="839">conexión dedicada</text>
+  <rect class="step" x="350" y="760" width="240" height="92"/><text class="stepNo" x="370" y="785">02</text><text class="stepText" x="370" y="817">Validar / bloquear</text><text class="mono" x="370" y="839">SELECT ... FOR UPDATE</text>
+  <rect class="step" x="637" y="760" width="240" height="92"/><text class="stepNo" x="657" y="785">03</text><text class="stepText" x="657" y="817">Escrituras relacionadas</text><text class="small" x="657" y="839">INSERT / UPDATE / DELETE</text>
+  <rect class="step" x="924" y="760" width="205" height="92"/><text class="stepNo" x="944" y="785">04</text><text class="stepText" x="944" y="817">commit()</text><text class="small" x="944" y="839">confirma todo</text>
+  <rect class="step" x="1176" y="760" width="230" height="92"/><text class="stepNo" x="1196" y="785">ERROR</text><text class="stepText" x="1196" y="817">rollback()</text><text class="small" x="1196" y="839">ningún cambio parcial</text>
+
+  <path class="critical" d="M303 806H350"/><path class="critical" d="M590 806H637"/><path class="critical" d="M877 806H924"/>
+  <path class="rollback" d="M760 852V873H1290V852"/>
+  <text class="small" x="88" y="906">Finalmente: release() devuelve la conexión al pool, tanto en éxito como en error. Las pruebas automatizadas simulan estas secuencias.</text>
+</svg>

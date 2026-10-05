@@ -1,0 +1,70 @@
+name: Historia de usuario
+description: Registrar una historia lista para el backlog Scrum del gimnasio
+title: "HU: "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Proyecto Gimnasio - Historia de Usuario
+        Usa esta plantilla para historias que el Product Owner pueda ordenar y aceptar. Una issue no se considera terminada hasta cumplir sus criterios.
+        
+        [Ver Planeación Scrum](../../docs/05_scrum.md) para más contexto sobre los sprints y prioridades.
+  - type: input
+    id: actor
+    attributes:
+      label: Rol / persona
+      description: ¿Quién necesita esta capacidad?
+      placeholder: Como administrador...
+    validations:
+      required: true
+  - type: textarea
+    id: necesidad
+    attributes:
+      label: Necesidad y beneficio
+      description: Completa “quiero ... para ...”.
+      placeholder: Quiero ... para ...
+    validations:
+      required: true
+  - type: textarea
+    id: criterios
+    attributes:
+      label: Criterios de aceptación
+      description: Lista condiciones observables y comprobables.
+      placeholder: |
+        - [ ] Dado ..., cuando ..., entonces ...
+        - [ ] ...
+    validations:
+      required: true
+  - type: dropdown
+    id: prioridad
+    attributes:
+      label: Prioridad
+      options:
+        - P0 bloqueante
+        - P1 alta
+        - P2 normal
+        - P3 baja
+    validations:
+      required: true
+  - type: dropdown
+    id: tamano
+    attributes:
+      label: Tamaño relativo
+      description: Estimar complejidad, no horas.
+      options:
+        - "1"
+        - "2"
+        - "3"
+        - "5"
+        - "8"
+    validations:
+      required: true
+  - type: textarea
+    id: dependencias
+    attributes:
+      label: Dependencias, riesgos y evidencia
+      description: Indica bloqueos, historias relacionadas, archivos, pruebas o capturas al aceptar.
+      placeholder: Ninguna / depende de #issue
+    validations:
+      required: false

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1140" style="width:100%;height:auto;max-width:100%" viewBox="0 0 1600 1140" preserveAspectRatio="xMidYMin meet" role="img" aria-labelledby="title description">
+  <title id="title">Modelo relacional de Gestión de Gimnasio</title>
+  <desc id="description">Diagrama de ocho tablas con columnas principales, claves y cardinalidades.</desc>
+  <defs>
+    <style>
+      .bg{fill:#f4f7f5}.title{font:700 31px Arial,sans-serif;fill:#142c2a}.sub{font:15px Arial,sans-serif;fill:#536966}
+      .panel{fill:#eaf0ed;stroke:#d5e0db;stroke-width:1.5;rx:18}.panelText{font:700 13px Arial,sans-serif;letter-spacing:1.2px;fill:#58716b}
+      .card{fill:#fff;stroke:#a9beb5;stroke-width:1.5;rx:11}.headGreen{fill:#d8ece3}.headGold{fill:#f4e7d1}.headBlue{fill:#dce8f1}
+      .entity{font:700 17px Arial,sans-serif;fill:#183b36}.field{font:13.5px Consolas,monospace;fill:#344c48}.pk{font:700 11px Arial,sans-serif;fill:#175d4b}.fk{font:700 11px Arial,sans-serif;fill:#9a5728}
+      .rel{fill:none;stroke:#54766d;stroke-width:2}.optional{fill:none;stroke:#bd8050;stroke-width:2;stroke-dasharray:7 6}.relLabel{font:12px Arial,sans-serif;fill:#35564f;paint-order:stroke;stroke:#f4f7f5;stroke-width:5px;stroke-linejoin:round}
+      .note{fill:#fff;stroke:#d7e1dc;stroke-width:1.5;rx:12}.noteTitle{font:700 15px Arial,sans-serif;fill:#24443e}.noteText{font:13px Arial,sans-serif;fill:#526762}
+    </style>
+  </defs>
+  <rect class="bg" width="1600" height="1140"/>
+  <text class="title" x="52" y="55">Gestión de Gimnasio</text>
+  <text class="sub" x="52" y="82">Modelo relacional · MySQL · relaciones verificadas contra database/01_schema.sql</text>
+
+  <rect class="panel" x="35" y="115" width="315" height="880"/><text class="panelText" x="58" y="145">IDENTIDAD</text>
+  <rect class="panel" x="375" y="115" width="390" height="880"/><text class="panelText" x="398" y="145">CLIENTES Y SERVICIOS</text>
+  <rect class="panel" x="790" y="115" width="390" height="880"/><text class="panelText" x="813" y="145">SEGUIMIENTO</text>
+  <rect class="panel" x="1205" y="115" width="360" height="880"/><text class="panelText" x="1228" y="145">OPERACIÓN FINANCIERA</text>
+
+  <g transform="translate(60 190)">
+    <rect class="card" width="265" height="190"/><path class="headBlue" d="M11 0H254a11 11 0 0 1 11 11V43H0V11A11 11 0 0 1 11 0Z"/><text class="entity" x="17" y="28">usuarios</text>
+    <text class="pk" x="17" y="72">PK</text><text class="field" x="52" y="72">id</text><text class="field" x="17" y="101">nombre</text><text class="field" x="17" y="130">correo UNIQUE</text><text class="field" x="17" y="159">password_hash · rol · activo</text>
+  </g>
+  <g transform="translate(60 545)">
+    <rect class="card" width="265" height="215"/><path class="headGreen" d="M11 0H254a11 11 0 0 1 11 11V43H0V11A11 11 0 0 1 11 0Z"/><text class="entity" x="17" y="28">clientes</text>
+    <text class="pk" x="17" y="72">PK</text><text class="field" x="52" y="72">id</text><text class="field" x="17" y="101">nombre · apellido</text><text class="field" x="17" y="130">correo · telefono · edad</text><text class="field" x="17" y="159">activo · fecha_registro</text><text class="field" x="17" y="188">creado_en</text>
+  </g>
+  <g transform="translate(405 180)">
+    <rect class="card" width="330" height="205"/><path class="headGold" d="M11 0H319a11 11 0 0 1 11 11V43H0V11A11 11 0 0 1 11 0Z"/><text class="entity" x="17" y="28">planes</text>
+    <text class="pk" x="17" y="72">PK</text><text class="field" x="52" y="72">id</text><text class="field" x="17" y="101">nombre · descripcion</text><text class="field" x="17" y="130">duracion_dias · nivel</text><text class="field" x="17" y="159">meta · precio · activo</text>
+  </g>
+  <g transform="translate(405 455)">
+    <rect class="card" width="330" height="250"/><path class="headGold" d="M11 0H319a11 11 0 0 1 11 11V43H0V11A11 11 0 0 1 11 0Z"/><text class="entity" x="17" y="28">contratos</text>
+    <text class="pk" x="17" y="72">PK</text><text class="field" x="52" y="72">id</text><text class="fk" x="17" y="101">FK</text><text class="field" x="52" y="101">cliente_id · plan_id</text><text class="field" x="17" y="130">fecha_inicio · fecha_fin</text><text class="field" x="17" y="159">precio_acordado</text><text class="field" x="17" y="188">duracion_dias · estado</text><text class="field" x="17" y="217">creado_en</text>
+  </g>
+  <g transform="translate(405 770)">
+    <rect class="card" width="330" height="205"/><path class="headGold" d="M11 0H319a11 11 0 0 1 11 11V43H0V11A11 11 0 0 1 11 0Z"/><text class="entity" x="17" y="28">planes_nutricionales</text>
+    <text class="pk" x="17" y="72">PK</text><text class="field" x="52" y="72">id</text><text class="fk" x="17" y="101">FK</text><text class="field" x="52" y="101">cliente_id · plan_id</text><text class="field" x="17" y="130">nombre · objetivo</text><text class="field" x="17" y="159">fecha_inicio · fecha_fin</text><text class="field" x="17" y="188">activo · creado_por (nullable)</text>
+  </g>
+  <g transform="translate(820 210)">
+    <rect class="card" width="330" height="270"/><path class="headGreen" d="M11 0H319a11 11 0 0 1 11 11V43H0V11A11 11 0 0 1 11 0Z"/><text class="entity" x="17" y="28">progresos</text>
+    <text class="pk" x="17" y="72">PK</text><text class="field" x="52" y="72">id</text><text class="fk" x="17" y="101">FK</text><text class="field" x="52" y="101">contrato_id · cliente_id</text><text class="field" x="17" y="130">fecha · peso_kg</text><text class="field" x="17" y="159">grasa_corporal</text><text class="field" x="17" y="188">cintura · brazo · pierna</text><text class="field" x="17" y="217">foto_url · comentarios</text><text class="fk" x="17" y="246">FK opcional</text><text class="field" x="100" y="246">creado_por</text>
+  </g>
+  <g transform="translate(820 650)">
+    <rect class="card" width="330" height="220"/><path class="headGold" d="M11 0H319a11 11 0 0 1 11 11V43H0V11A11 11 0 0 1 11 0Z"/><text class="entity" x="17" y="28">alimentos</text>
+    <text class="pk" x="17" y="72">PK</text><text class="field" x="52" y="72">id</text><text class="fk" x="17" y="101">FK</text><text class="field" x="52" y="101">plan_nutricional_id</text><text class="field" x="17" y="130">dia_semana · tiempo_comida</text><text class="field" x="17" y="159">nombre · porcion · calorias</text>
+  </g>
+  <g transform="translate(1230 400)">
+    <rect class="card" width="310" height="270"/><path class="headBlue" d="M11 0H299a11 11 0 0 1 11 11V43H0V11A11 11 0 0 1 11 0Z"/><text class="entity" x="17" y="28">movimientos</text>
+    <text class="pk" x="17" y="72">PK</text><text class="field" x="52" y="72">id</text><text class="fk" x="17" y="101">FK opcional</text><text class="field" x="95" y="101">cliente_id</text><text class="fk" x="17" y="130">FK opcional</text><text class="field" x="95" y="130">contrato_id</text><text class="field" x="17" y="159">tipo · concepto · monto</text><text class="field" x="17" y="188">fecha</text><text class="fk" x="17" y="217">FK requerida</text><text class="field" x="105" y="217">creado_por</text><text class="field" x="17" y="246">creado_en</text>
+  </g>
+
+  <!-- Relaciones principales, dibujadas en carriles para evitar cruces sobre las entidades. -->
+  <path class="rel" d="M325 650H365V580H405"/><text class="relLabel" x="331" y="603">1 : N</text><text class="relLabel" x="381" y="568">N : 1</text>
+  <path class="rel" d="M570 385V420H570V455"/><text class="relLabel" x="580" y="418">1 : N</text>
+  <path class="rel" d="M735 545H780V330H820"/><text class="relLabel" x="744" y="532">1 : N</text><text class="relLabel" x="785" y="317">N : 1</text>
+  <path class="rel" d="M325 700H385V440H820"/><text class="relLabel" x="345" y="690">1 : N</text><text class="relLabel" x="791" y="429">N : 1</text>
+  <path class="rel" d="M700 385H755V810H735"/><text class="relLabel" x="710" y="374">1 : N</text><text class="relLabel" x="740" y="795">N : 1</text>
+  <path class="rel" d="M325 735H375V900H405"/><text class="relLabel" x="331" y="755">1 : N</text><text class="relLabel" x="380" y="890">N : 1</text>
+  <path class="rel" d="M735 870H780V760H820"/><text class="relLabel" x="744" y="858">1 : N</text><text class="relLabel" x="785" y="748">N : 1</text>
+  <path class="optional" d="M190 760V1000H1190V650H1230"/><text class="relLabel" x="905" y="988">cliente 1 : movimiento 0..1</text>
+  <path class="optional" d="M735 500H1230"/><text class="relLabel" x="1040" y="489">contrato 1 : movimiento 0..1</text>
+  <path class="rel" d="M325 190V160H1190V615H1230"/><text class="relLabel" x="1000" y="151">usuario 1 : movimiento N (crea)</text>
+  <path class="optional" d="M300 380V400H785V250H820"/><text class="relLabel" x="595" y="393">usuario 0..N : progreso 0..1 (crea)</text>
+  <path class="optional" d="M320 365H365V990H390V940H405"/><text class="relLabel" x="372" y="965" transform="rotate(-90 372 965)">usuario 0..N : plan nutricional 0..1 (crea)</text>
+
+  <rect class="note" x="60" y="1020" width="1480" height="82"/>
+  <text class="noteTitle" x="82" y="1051">Lectura del diagrama</text>
+  <text class="noteText" x="82" y="1077">PK = clave primaria · FK = clave foránea · 1:N = una fila relacionada con muchas · 0..1 = vínculo opcional · La cancelación elimina progresos del contrato en una transacción.</text>
+</svg>
