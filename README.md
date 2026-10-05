@@ -1,6 +1,5 @@
-<<<<<<< HEAD
+
 # Reporte-gimnasio
-=======
 # Gestión de Gimnasio
 
 Aplicación de línea de comandos (CLI) para administrar clientes, planes, contratos, seguimiento, nutrición y movimientos financieros de un gimnasio. Está desarrollada con Node.js, módulos ES y MySQL mediante `mysql2/promise`.
@@ -137,4 +136,3 @@ src/
 tests/
 └── unit/
 ```
->>>>>>> b5d5650 (subir proyecto completo)
